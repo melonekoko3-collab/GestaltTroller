@@ -16,10 +16,10 @@
     :root {
       --glass-bg: rgba(255, 255, 255, 0.08);
       --glass-bg-hover: rgba(255, 255, 255, 0.16);
-      --glass-border: rgba(255, 255, 255, 0.24);
-      --glass-border-bright: rgba(255, 255, 255, 0.45);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --glass-border-bright: rgba(255, 255, 255, 0.48);
       --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.72);
+      --text-secondary: rgba(255, 255, 255, 0.76);
     }
 
     body {
@@ -28,18 +28,18 @@
       align-items: center;
       justify-content: center;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-      background: #050711;
+      background: #090414;
       color: var(--text-primary);
       overflow: hidden;
       position: relative;
     }
 
-    /* Interactive Mesh Gradient Background */
+    /* Interactive GTA Sunset / Neon Mesh Background */
     .mesh-background {
       position: fixed;
       inset: -25%;
       z-index: 0;
-      filter: blur(95px) saturate(165%);
+      filter: blur(90px) saturate(185%);
       pointer-events: none;
       will-change: transform;
     }
@@ -53,96 +53,118 @@
     .orb {
       position: absolute;
       border-radius: 50%;
-      opacity: 0.9;
+      opacity: 0.92;
       will-change: transform;
     }
 
+    /* Hot Vice Pink */
     .orb-1 {
-      width: 55vw;
-      height: 55vw;
-      max-width: 720px;
-      max-height: 720px;
-      background: radial-gradient(circle, #4f46e5 0%, transparent 70%);
-      top: 8%;
-      left: 12%;
-      animation: floatOne 16s ease-in-out infinite alternate;
+      width: 56vw;
+      height: 56vw;
+      max-width: 740px;
+      max-height: 740px;
+      background: radial-gradient(circle, #ff2a85 0%, transparent 70%);
+      top: 4%;
+      left: 8%;
+      animation: floatOne 15s ease-in-out infinite alternate;
     }
 
+    /* Electric Miami Cyan */
     .orb-2 {
-      width: 52vw;
-      height: 52vw;
-      max-width: 680px;
-      max-height: 680px;
-      background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
-      bottom: 8%;
-      right: 12%;
-      animation: floatTwo 20s ease-in-out infinite alternate;
+      width: 54vw;
+      height: 54vw;
+      max-width: 700px;
+      max-height: 700px;
+      background: radial-gradient(circle, #00e5ff 0%, transparent 70%);
+      bottom: 4%;
+      right: 8%;
+      animation: floatTwo 19s ease-in-out infinite alternate;
     }
 
+    /* Warm Sunset Gold / Coral */
     .orb-3 {
-      width: 46vw;
-      height: 46vw;
-      max-width: 600px;
-      max-height: 600px;
-      background: radial-gradient(circle, #ec4899 0%, transparent 70%);
-      top: 32%;
-      right: 22%;
-      animation: floatThree 18s ease-in-out infinite alternate;
-    }
-
-    .orb-4 {
       width: 48vw;
       height: 48vw;
       max-width: 620px;
       max-height: 620px;
-      background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
-      bottom: 18%;
-      left: 18%;
-      animation: floatFour 22s ease-in-out infinite alternate;
+      background: radial-gradient(circle, #ff7b00 0%, transparent 70%);
+      top: 28%;
+      right: 18%;
+      animation: floatThree 17s ease-in-out infinite alternate;
     }
 
+    /* Deep Twilight Violet */
+    .orb-4 {
+      width: 52vw;
+      height: 52vw;
+      max-width: 660px;
+      max-height: 660px;
+      background: radial-gradient(circle, #7b2cbf 0%, transparent 70%);
+      bottom: 14%;
+      left: 14%;
+      animation: floatFour 21s ease-in-out infinite alternate;
+    }
+
+    /* Neon Magenta Accent */
     .orb-5 {
-      width: 38vw;
-      height: 38vw;
+      width: 42vw;
+      height: 42vw;
+      max-width: 540px;
+      max-height: 540px;
+      background: radial-gradient(circle, #e040fb 0%, transparent 70%);
+      top: 42%;
+      left: 40%;
+      animation: floatFive 14s ease-in-out infinite alternate;
+    }
+
+    /* Soft Peach Horizon Glow */
+    .orb-6 {
+      width: 40vw;
+      height: 40vw;
       max-width: 500px;
       max-height: 500px;
-      background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
-      top: 45%;
-      left: 42%;
-      animation: floatFive 15s ease-in-out infinite alternate;
+      background: radial-gradient(circle, #ff5e62 0%, transparent 70%);
+      top: 12%;
+      right: 36%;
+      animation: floatSix 18s ease-in-out infinite alternate;
     }
 
     @keyframes floatOne {
       0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(10%, 14%) scale(1.12); }
+      100% { transform: translate(11%, 15%) scale(1.14); }
     }
 
     @keyframes floatTwo {
       0% { transform: translate(0, 0) scale(1.05); }
-      100% { transform: translate(-12%, -12%) scale(0.95); }
+      100% { transform: translate(-13%, -12%) scale(0.95); }
     }
 
     @keyframes floatThree {
       0% { transform: translate(0, 0) scale(0.95); }
-      100% { transform: translate(-14%, 12%) scale(1.1); }
+      100% { transform: translate(-15%, 13%) scale(1.12); }
     }
 
     @keyframes floatFour {
       0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(14%, -14%) scale(1.08); }
+      100% { transform: translate(14%, -14%) scale(1.1); }
     }
 
     @keyframes floatFive {
-      0% { transform: translate(0, 0) scale(0.9); }
-      100% { transform: translate(-10%, -10%) scale(1.15); }
+      0% { transform: translate(0, 0) scale(0.92); }
+      100% { transform: translate(-11%, -11%) scale(1.16); }
     }
 
-    /* Subtle Noise Texture Overlay */
+    @keyframes floatSix {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(9%, 12%) scale(1.1); }
+    }
+
+    /* Subtle Film Grain / Noise Overlay */
     .noise-overlay {
       position: fixed;
       inset: 0;
       z-index: 1;
-      opacity: 0.035;
+      opacity: 0.04;
       pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
@@ -152,7 +174,7 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 400px;
+      max-width: 480px;
       padding: 24px;
       display: flex;
       flex-direction: column;
@@ -160,22 +182,34 @@
       text-align: center;
     }
 
-    /* Liquid Glass Title */
+    /* Larger GTA-Inspired Title */
     .title {
-      font-size: clamp(2.5rem, 6vw, 3.25rem);
-      font-weight: 700;
-      letter-spacing: -0.035em;
-      margin-bottom: 36px;
-      background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.72) 100%);
+      font-size: clamp(3.2rem, 8.5vw, 4.4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 40px;
+      user-select: none;
+      filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.38));
+    }
+
+    .title-gestalt {
+      background: linear-gradient(135deg, #ffffff 0%, #ffd1dc 45%, #ff8fab 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
-      user-select: none;
+    }
+
+    .title-troller {
+      font-weight: 600;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     /* Button Stack */
     .button-stack {
       width: 100%;
+      max-width: 390px;
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -204,8 +238,8 @@
       cursor: pointer;
       overflow: hidden;
       box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.28),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.32);
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.34);
       transition:
         transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
         background 0.35s ease,
@@ -222,7 +256,7 @@
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
-      opacity: 0.9;
+      opacity: 0.92;
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       flex-shrink: 0;
     }
@@ -238,7 +272,7 @@
       background: linear-gradient(
         110deg,
         transparent 0%,
-        rgba(255, 255, 255, 0.28) 50%,
+        rgba(255, 255, 255, 0.3) 50%,
         transparent 100%
       );
       transform: skewX(-20deg);
@@ -253,8 +287,8 @@
       backdrop-filter: blur(40px) saturate(210%);
       -webkit-backdrop-filter: blur(40px) saturate(210%);
       box-shadow:
-        0 14px 40px rgba(0, 0, 0, 0.38),
-        inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+        0 14px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.52);
     }
 
     .glass-btn:hover::before {
@@ -263,6 +297,10 @@
 
     .glass-btn.primary:hover svg {
       transform: translateY(2px);
+    }
+
+    .glass-btn.secondary:hover svg {
+      transform: scale(1.1);
     }
 
     .glass-btn.about-open svg.arrow-icon {
@@ -285,7 +323,7 @@
     .glass-btn.primary {
       background: linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0.17) 0%,
         rgba(255, 255, 255, 0.07) 100%
       );
     }
@@ -293,13 +331,14 @@
     /* Seamless Inline About Panel */
     .about-panel {
       width: 100%;
+      max-width: 390px;
       max-height: 0;
       opacity: 0;
       overflow: hidden;
       margin-top: 0;
       border-radius: 20px;
       border: 1px solid transparent;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.07);
       backdrop-filter: blur(30px) saturate(180%);
       -webkit-backdrop-filter: blur(30px) saturate(180%);
       box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
@@ -337,7 +376,7 @@
 
     .feature-list li {
       font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.88);
+      color: rgba(255, 255, 255, 0.9);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -347,8 +386,8 @@
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #38bdf8, #a855f7);
-      box-shadow: 0 0 8px rgba(56, 189, 248, 0.85);
+      background: linear-gradient(135deg, #ff2a85, #00e5ff);
+      box-shadow: 0 0 8px rgba(255, 42, 133, 0.85);
       flex-shrink: 0;
     }
   </style>
@@ -360,13 +399,17 @@
     <div class="orb-wrapper" data-depth="0.09"><div class="orb orb-3"></div></div>
     <div class="orb-wrapper" data-depth="-0.05"><div class="orb orb-4"></div></div>
     <div class="orb-wrapper" data-depth="0.11"><div class="orb orb-5"></div></div>
+    <div class="orb-wrapper" data-depth="-0.07"><div class="orb orb-6"></div></div>
   </div>
   <div class="noise-overlay"></div>
 
   <main class="container">
-    <h1 class="title">GestaltTroller</h1>
+    <h1 class="title">
+      <span class="title-gestalt">Gestalt</span><span class="title-troller">Troller</span>
+    </h1>
 
     <div class="button-stack">
+      <!-- 1. Download Button -->
       <a
         id="downloadBtn"
         href="https://github.com/melonekoko3-collab/GestaltTroller/releases"
@@ -380,6 +423,21 @@
         <span>Download</span>
       </a>
 
+      <!-- 2. Join Our Discord Button -->
+      <a
+        id="discordBtn"
+        href="https://discord.gg/Upq4E6kQgA"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="glass-btn secondary"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        <span>Join Our Discord</span>
+      </a>
+
+      <!-- 3. About Button -->
       <button id="aboutBtn" type="button" class="glass-btn">
         <span>About</span>
         <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -423,7 +481,6 @@
       targetY = e.clientY - window.innerHeight / 2;
     });
 
-    // Mobile/Touch fallback
     window.addEventListener("touchmove", (e) => {
       if (e.touches.length > 0) {
         targetX = e.touches[0].clientX - window.innerWidth / 2;
