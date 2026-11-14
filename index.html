@@ -15,6 +15,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
       user-select: none;
     }
 
@@ -44,14 +45,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start; /* HIER WAR DER FEHLER: Startet jetzt sauber oben statt mitten im Bildschirm zu schweben */
+      justify-content: flex-start;
       padding-top: max(32px, 6vh);
       padding-bottom: 40px;
       padding-left: 16px;
       padding-right: 16px;
     }
 
-    /* Intensiver, mehrfarbiger Blau-Mesh-Hintergrund */
     .mesh-background {
       position: fixed;
       inset: -25%;
@@ -91,7 +91,6 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* Schwebende Dock-Leiste oben rechts */
     .floating-dock {
       position: fixed;
       top: max(14px, env(safe-area-inset-top));
@@ -112,8 +111,8 @@
     }
 
     body.is-scrolled .floating-dock { opacity: 1; transform: translate3d(0, 0, 0) scale(1); pointer-events: auto; }
-    .floating-dock:hover { transform: scale(1.04); border-color: rgba(255, 255, 255, 0.5); }
-    .floating-dock:active { transform: scale(0.93); }
+    body.is-scrolled .floating-dock:hover { transform: scale(1.04); border-color: rgba(255, 255, 255, 0.5); }
+    body.is-scrolled .floating-dock:active { transform: scale(0.93); }
 
     .dock-squircle {
       width: 28px; height: 28px; border-radius: 8px; overflow: hidden; position: relative;
@@ -124,7 +123,6 @@
     .dock-title { font-size: 0.9rem; font-weight: 700; letter-spacing: -0.02em; color: #ffffff; }
     .dock-title span { font-weight: 500; color: #bae6fd; }
 
-    /* Zentrierter App-Card Container */
     .app-card-wrapper {
       position: relative;
       z-index: 2;
@@ -168,8 +166,8 @@
       font-size: 2.4rem; font-weight: 800; letter-spacing: -0.042em; line-height: 1.0;
       filter: drop-shadow(0 12px 28px rgba(0, 8, 28, 0.65)); margin-bottom: 4px;
     }
-    .title-gestalt { background: linear-gradient(180deg, #ffffff 15%, #bae6fd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .title-troller { font-weight: 600; background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(125, 211, 252, 0.78) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .title-gestalt { background: linear-gradient(180deg, #ffffff 15%, #bae6fd 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .title-troller { font-weight: 600; background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(125, 211, 252, 0.78) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
     .support-subtitle {
       font-size: 0.88rem; font-weight: 500; color: #bae6fd; letter-spacing: -0.01em;
@@ -185,7 +183,7 @@
       border: 1px solid var(--glass-edge-side); border-top: 1px solid var(--glass-edge-top); border-bottom: 1px solid rgba(56, 189, 248, 0.16);
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 45%, rgba(0, 40, 110, 0.12) 100%);
       backdrop-filter: blur(18px) saturate(210%) contrast(108%); -webkit-backdrop-filter: blur(18px) saturate(210%) contrast(108%);
-      color: var(--text-primary); font-size: 0.98rem; font-weight: 600; letter-spacing: -0.015em; text-decoration: none;
+      color: var(--text-primary); font-family: inherit; font-size: 0.98rem; font-weight: 600; letter-spacing: -0.015em; text-decoration: none;
       display: flex; align-items: center; justify-content: center; gap: 9px; cursor: pointer; overflow: hidden;
       box-shadow: 0 10px 24px -4px rgba(0, 6, 24, 0.5), 0 3px 10px rgba(0, 85, 255, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.45), inset 0 -1px 2px rgba(0, 162, 255, 0.2);
       transition: transform 0.5s var(--spring-snappy), background 0.3s ease, border-color 0.3s ease, box-shadow 0.35s ease;
@@ -221,33 +219,41 @@
     .glass-btn.panel-open svg.arrow-icon { transform: rotate(90deg); }
     .glass-btn:not(.panel-open):hover svg.arrow-icon { transform: translateX(3px); }
 
+    /* Geschlossen: Höhe 0, kein Rand und negativer Margin gleicht den Flex-Gap aus,
+       damit zwischen den Buttons keine Lücke entsteht. */
     .info-panel {
-      width: 100%; max-height: 0; opacity: 0; overflow-y: auto; margin-top: 0; border-radius: 15px; border: 1px solid transparent;
+      width: 100%; max-height: 0; opacity: 0; overflow: hidden;
+      margin-top: -10px; margin-bottom: 0; border-radius: 15px; border: 0 solid transparent;
       background: linear-gradient(180deg, rgba(12, 38, 92, 0.45) 0%, rgba(4, 18, 48, 0.6) 100%);
       backdrop-filter: blur(22px) saturate(200%); -webkit-backdrop-filter: blur(22px) saturate(200%);
       box-shadow: 0 14px 32px rgba(0, 6, 24, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.35);
       transform: translateY(-6px) scale(0.98);
+      visibility: hidden;
       transition:
         max-height 0.5s var(--spring-bounce),
         opacity 0.35s ease,
         transform 0.5s var(--spring-bounce),
         margin-top 0.4s var(--spring-bounce),
         padding 0.4s var(--spring-bounce),
-        border-color 0.3s ease;
+        border-color 0.3s ease,
+        visibility 0s linear 0.5s;
       padding: 0 16px; text-align: left;
     }
 
     .info-panel.open {
-      max-height: 350px; opacity: 1; margin-top: 8px; margin-bottom: 2px; padding: 14px 16px;
+      max-height: 350px; opacity: 1; overflow-y: auto; margin-top: -2px; margin-bottom: 2px; padding: 14px 16px;
+      border-width: 1px;
       border-color: rgba(125, 211, 252, 0.32); border-top-color: rgba(255, 255, 255, 0.45); transform: translateY(0) scale(1);
+      visibility: visible;
+      transition-delay: 0s;
     }
 
-    .info-panel p { font-size: 0.85rem; line-height: 1.45; color: var(--text-secondary); margin-bottom: 8px; user-select: text; }
+    .info-panel p { font-size: 0.85rem; line-height: 1.45; color: var(--text-secondary); margin-bottom: 8px; -webkit-user-select: text; user-select: text; }
 
     .feature-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
     .feature-list li {
       font-size: 0.82rem; line-height: 1.4; color: rgba(240, 249, 255, 0.95);
-      display: flex; align-items: flex-start; gap: 8px; user-select: text;
+      display: flex; align-items: flex-start; gap: 8px; -webkit-user-select: text; user-select: text;
     }
     .feature-dot {
       width: 5px; height: 5px; margin-top: 5px; border-radius: 50%;
@@ -256,6 +262,11 @@
     .step-badge {
       font-size: 0.68rem; font-weight: 700; color: #ffffff; background: rgba(0, 136, 255, 0.32);
       border: 0.5px solid rgba(125, 211, 252, 0.48); border-radius: 5px; padding: 1px 5px; margin-top: 1px; flex-shrink: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .orb { animation: none; }
+      * { transition-duration: 0.01s !important; }
     }
   </style>
 </head>
@@ -278,7 +289,7 @@
     <div class="dock-title">Gestalt<span>Troller</span></div>
   </header>
 
-  <!-- Zentrierter App-Card Container -->
+  <!-- App-Card Container -->
   <div class="app-card-wrapper">
     <!-- Hero Brand -->
     <div class="hero-brand" id="heroBrand">
@@ -300,11 +311,11 @@
           <path d="m7 10 5 5 5-5" />
           <path d="M5 19h14" />
         </svg>
-        <span>Download</span>
+        <span>Download .IPA</span>
       </a>
 
       <!-- 2. Guide Button + Panel -->
-      <button id="guideBtn" type="button" class="glass-btn">
+      <button id="guideBtn" type="button" class="glass-btn" aria-expanded="false" aria-controls="guidePanel">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
           <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
@@ -317,10 +328,10 @@
       <section id="guidePanel" class="info-panel" aria-hidden="true">
         <p><strong>ESign / KSign Sideload Guide</strong></p>
         <ul class="feature-list">
-          <li><span class="step-badge">1</span>Install <strong>ESign</strong> or <strong>KSign</strong> via Safari signing service.</li>
-          <li><span class="step-badge">2</span>Go to <em>Settings &gt; General &gt; VPN &amp; Device Management</em> and trust the certificate.</li>
-          <li><span class="step-badge">3</span>Tap <strong>Download</strong> above to get the latest <strong>.ipa</strong> from GitHub.</li>
-          <li><span class="step-badge">4</span>Import and sign the .ipa inside ESign/KSign, then tap Install.</li>
+          <li><span class="step-badge">1</span><span>Install <strong>ESign</strong> or <strong>KSign</strong> via Safari signing service.</span></li>
+          <li><span class="step-badge">2</span><span>Go to <em>Settings &gt; General &gt; VPN &amp; Device Management</em> and trust the certificate.</span></li>
+          <li><span class="step-badge">3</span><span>Tap <strong>Download .IPA</strong> above to get the latest <strong>.ipa</strong> from GitHub.</span></li>
+          <li><span class="step-badge">4</span><span>Import and sign the .ipa inside ESign/KSign, then tap Install.</span></li>
         </ul>
       </section>
 
@@ -333,7 +344,7 @@
       </a>
 
       <!-- 4. About Button + Panel -->
-      <button id="aboutBtn" type="button" class="glass-btn">
+      <button id="aboutBtn" type="button" class="glass-btn" aria-expanded="false" aria-controls="aboutPanel">
         <span>About</span>
         <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M9 6l6 6-6 6" />
@@ -344,9 +355,9 @@
           <strong>GestaltTroller</strong> is an iOS customization utility leveraging system vulnerabilities to modify MobileGestalt parameters and toggle internal feature flags without a full jailbreak.
         </p>
         <ul class="feature-list">
-          <li><span class="feature-dot"></span>Custom MobileGestalt device &amp; UI tweaks</li>
-          <li><span class="feature-dot"></span>Disable or customize PosterBoard behavior</li>
-          <li><span class="feature-dot"></span>Toggle Liquid Glass &amp; internal iOS Feature Flags</li>
+          <li><span class="feature-dot"></span><span>Custom MobileGestalt device &amp; UI tweaks</span></li>
+          <li><span class="feature-dot"></span><span>Disable or customize PosterBoard behavior</span></li>
+          <li><span class="feature-dot"></span><span>Toggle Liquid Glass &amp; internal iOS Feature Flags</span></li>
         </ul>
       </section>
     </div>
@@ -407,7 +418,7 @@
     const glassButtons = document.querySelectorAll(".glass-btn");
     const orbWrappers = document.querySelectorAll(".orb-wrapper");
 
-    function togglePanel(activeBtn, activePanel) {
+    function togglePanel(activePanel) {
       const panels = [
         { btn: guideBtn, panel: guidePanel },
         { btn: aboutBtn, panel: aboutPanel }
@@ -417,24 +428,22 @@
         if (item.panel === activePanel) {
           const isOpen = item.panel.classList.toggle("open");
           item.btn.classList.toggle("panel-open", isOpen);
+          item.btn.setAttribute("aria-expanded", String(isOpen));
           item.panel.setAttribute("aria-hidden", String(!isOpen));
         } else {
           item.panel.classList.remove("open");
           item.btn.classList.remove("panel-open");
+          item.btn.setAttribute("aria-expanded", "false");
           item.panel.setAttribute("aria-hidden", "true");
         }
       });
     }
 
-    guideBtn.addEventListener("click", () => togglePanel(guideBtn, guidePanel));
-    aboutBtn.addEventListener("click", () => togglePanel(aboutBtn, aboutPanel));
+    guideBtn.addEventListener("click", () => togglePanel(guidePanel));
+    aboutBtn.addEventListener("click", () => togglePanel(aboutPanel));
 
     function handleScroll() {
-      if (window.scrollY > 28) {
-        document.body.classList.add("is-scrolled");
-      } else {
-        document.body.classList.remove("is-scrolled");
-      }
+      document.body.classList.toggle("is-scrolled", window.scrollY > 28);
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -447,10 +456,8 @@
     glassButtons.forEach((btn) => {
       btn.addEventListener("mousemove", (e) => {
         const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        btn.style.setProperty("--mouse-x", `${x}px`);
-        btn.style.setProperty("--mouse-y", `${y}px`);
+        btn.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+        btn.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
       });
     });
 
@@ -465,15 +472,10 @@
       appIcon.style.transform = "perspective(400px) rotateX(0deg) rotateY(0deg) scale(1)";
     });
 
-    let targetX = 0;
-    let targetY = 0;
-    let posX = 0;
-    let posY = 0;
-    let velX = 0;
-    let velY = 0;
-
+    let targetX = 0, targetY = 0, posX = 0, posY = 0, velX = 0, velY = 0;
     const stiffness = 0.048;
     const damping = 0.78;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     window.addEventListener("mousemove", (e) => {
       targetX = e.clientX - window.innerWidth / 2;
@@ -488,12 +490,8 @@
     }, { passive: true });
 
     function simulatePhysics() {
-      const forceX = (targetX - posX) * stiffness;
-      const forceY = (targetY - posY) * stiffness;
-
-      velX = (velX + forceX) * damping;
-      velY = (velY + forceY) * damping;
-
+      velX = (velX + (targetX - posX) * stiffness) * damping;
+      velY = (velY + (targetY - posY) * stiffness) * damping;
       posX += velX;
       posY += velY;
 
@@ -505,7 +503,7 @@
       requestAnimationFrame(simulatePhysics);
     }
 
-    simulatePhysics();
+    if (!reduceMotion) simulatePhysics();
   </script>
 </body>
 </html>
