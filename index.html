@@ -111,8 +111,8 @@
     }
 
     body.is-scrolled .floating-dock { opacity: 1; transform: translate3d(0, 0, 0) scale(1); pointer-events: auto; }
-    body.is-scrolled .floating-dock:hover { transform: scale(1.04); border-color: rgba(255, 255, 255, 0.5); }
-    body.is-scrolled .floating-dock:active { transform: scale(0.93); }
+    .floating-dock:hover { transform: scale(1.04); border-color: rgba(255, 255, 255, 0.5); }
+    .floating-dock:active { transform: scale(0.93); }
 
     .dock-squircle {
       width: 28px; height: 28px; border-radius: 8px; overflow: hidden; position: relative;
@@ -250,6 +250,20 @@
 
     .info-panel p { font-size: 0.85rem; line-height: 1.45; color: var(--text-secondary); margin-bottom: 8px; -webkit-user-select: text; user-select: text; }
 
+    .license-note {
+      position: fixed;
+      left: max(10px, env(safe-area-inset-left));
+      bottom: max(8px, env(safe-area-inset-bottom));
+      z-index: 5;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: rgba(186, 230, 253, 0.5);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .license-note:hover { color: rgba(224, 242, 254, 0.95); }
+
     .feature-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
     .feature-list li {
       font-size: 0.82rem; line-height: 1.4; color: rgba(240, 249, 255, 0.95);
@@ -264,10 +278,6 @@
       border: 0.5px solid rgba(125, 211, 252, 0.48); border-radius: 5px; padding: 1px 5px; margin-top: 1px; flex-shrink: 0;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .orb { animation: none; }
-      * { transition-duration: 0.01s !important; }
-    }
   </style>
 </head>
 <body>
@@ -362,6 +372,8 @@
       </section>
     </div>
   </div>
+
+  <a class="license-note" href="https://github.com/melonekoko3-collab/GestaltTroller?tab=MIT-1-ov-file#" target="_blank" rel="noopener noreferrer">© 2026 · MIT License</a>
 
   <script>
     const fallbackSvg = `data:image/svg+xml;utf8,${encodeURIComponent(`
@@ -475,7 +487,6 @@
     let targetX = 0, targetY = 0, posX = 0, posY = 0, velX = 0, velY = 0;
     const stiffness = 0.048;
     const damping = 0.78;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     window.addEventListener("mousemove", (e) => {
       targetX = e.clientX - window.innerWidth / 2;
@@ -503,7 +514,7 @@
       requestAnimationFrame(simulatePhysics);
     }
 
-    if (!reduceMotion) simulatePhysics();
+    simulatePhysics();
   </script>
 </body>
 </html>
