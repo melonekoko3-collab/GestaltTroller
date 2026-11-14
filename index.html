@@ -19,7 +19,7 @@
       --glass-border: rgba(255, 255, 255, 0.25);
       --glass-border-bright: rgba(255, 255, 255, 0.48);
       --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.76);
+      --text-secondary: rgba(255, 255, 255, 0.78);
     }
 
     body {
@@ -30,8 +30,9 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
       background: #090414;
       color: var(--text-primary);
-      overflow: hidden;
+      overflow-x: hidden;
       position: relative;
+      padding: 32px 0;
     }
 
     /* Interactive GTA Sunset / Neon Mesh Background */
@@ -188,7 +189,7 @@
       font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 1.05;
-      margin-bottom: 40px;
+      margin-bottom: 38px;
       user-select: none;
       filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.38));
     }
@@ -212,14 +213,14 @@
       max-width: 390px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 13px;
     }
 
     /* Minimalist Glass Buttons with Blur & Sweep Animation */
     .glass-btn {
       position: relative;
       width: 100%;
-      height: 56px;
+      height: 55px;
       padding: 0 22px;
       border-radius: 18px;
       border: 1px solid var(--glass-border);
@@ -227,7 +228,7 @@
       backdrop-filter: blur(28px) saturate(180%);
       -webkit-backdrop-filter: blur(28px) saturate(180%);
       color: var(--text-primary);
-      font-size: 1.05rem;
+      font-size: 1.03rem;
       font-weight: 600;
       letter-spacing: -0.01em;
       text-decoration: none;
@@ -303,11 +304,11 @@
       transform: scale(1.1);
     }
 
-    .glass-btn.about-open svg.arrow-icon {
+    .glass-btn.panel-open svg.arrow-icon {
       transform: rotate(90deg);
     }
 
-    .glass-btn:not(.about-open):hover svg.arrow-icon {
+    .glass-btn:not(.panel-open):hover svg.arrow-icon {
       transform: translateX(3px);
     }
 
@@ -328,13 +329,13 @@
       );
     }
 
-    /* Seamless Inline About Panel */
-    .about-panel {
+    /* Seamless Inline Info Panels */
+    .info-panel {
       width: 100%;
       max-width: 390px;
       max-height: 0;
       opacity: 0;
-      overflow: hidden;
+      overflow-y: auto;
       margin-top: 0;
       border-radius: 20px;
       border: 1px solid transparent;
@@ -352,42 +353,56 @@
       text-align: left;
     }
 
-    .about-panel.open {
-      max-height: 340px;
+    .info-panel.open {
+      max-height: 420px;
       opacity: 1;
       margin-top: 16px;
       padding: 18px 20px;
       border-color: var(--glass-border);
     }
 
-    .about-panel p {
+    .info-panel p {
       font-size: 0.9rem;
       line-height: 1.55;
       color: var(--text-secondary);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .feature-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .feature-list li {
       font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.92);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
     }
 
     .feature-dot {
       width: 5px;
       height: 5px;
+      margin-top: 7px;
       border-radius: 50%;
       background: linear-gradient(135deg, #ff2a85, #00e5ff);
       box-shadow: 0 0 8px rgba(255, 42, 133, 0.85);
+      flex-shrink: 0;
+    }
+
+    .step-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 6px;
+      padding: 1px 6px;
+      margin-top: 1px;
       flex-shrink: 0;
     }
   </style>
@@ -423,7 +438,19 @@
         <span>Download</span>
       </a>
 
-      <!-- 2. Join Our Discord Button -->
+      <!-- 2. Guide Button (Sideloading Tutorial) -->
+      <button id="guideBtn" type="button" class="glass-btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+        </svg>
+        <span>Guide</span>
+        <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" />
+        </svg>
+      </button>
+
+      <!-- 3. Join Our Discord Button -->
       <a
         id="discordBtn"
         href="https://discord.gg/Upq4E6kQgA"
@@ -437,7 +464,7 @@
         <span>Join Our Discord</span>
       </a>
 
-      <!-- 3. About Button -->
+      <!-- 4. About Button -->
       <button id="aboutBtn" type="button" class="glass-btn">
         <span>About</span>
         <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -446,7 +473,19 @@
       </button>
     </div>
 
-    <section id="aboutPanel" class="about-panel" aria-hidden="true">
+    <!-- Inline Sideload Guide Panel -->
+    <section id="guidePanel" class="info-panel" aria-hidden="true">
+      <p><strong>ESign / KSign Sideload Guide</strong></p>
+      <ul class="feature-list">
+        <li><span class="step-badge">1</span>Open your mobile browser and install <strong>ESign</strong> or <strong>KSign</strong> via an official signing service or enterprise certificate.</li>
+        <li><span class="step-badge">2</span>Go to iOS <em>Settings &gt; General &gt; VPN &amp; Device Management</em> and trust the enterprise certificate.</li>
+        <li><span class="step-badge">3</span>Download the <strong>GestaltTroller .ipa</strong> file from the GitHub Releases page.</li>
+        <li><span class="step-badge">4</span>Import and sign the .ipa file inside ESign/KSign using your certificate, then tap install!</li>
+      </ul>
+    </section>
+
+    <!-- Inline About Panel -->
+    <section id="aboutPanel" class="info-panel" aria-hidden="true">
       <p>
         <strong>GestaltTroller</strong> is an iOS customization utility leveraging a system vulnerability to modify MobileGestalt parameters and toggle internal system feature flags without a full jailbreak.
       </p>
@@ -459,15 +498,30 @@
   </main>
 
   <script>
+    const guideBtn = document.getElementById("guideBtn");
+    const guidePanel = document.getElementById("guidePanel");
     const aboutBtn = document.getElementById("aboutBtn");
     const aboutPanel = document.getElementById("aboutPanel");
     const orbWrappers = document.querySelectorAll(".orb-wrapper");
 
-    // Toggle About panel & rotate arrow icon
+    function togglePanel(btn, panel, otherBtn, otherPanel) {
+      if (otherPanel.classList.contains("open")) {
+        otherPanel.classList.remove("open");
+        otherBtn.classList.remove("panel-open");
+        otherPanel.setAttribute("aria-hidden", "true");
+      }
+
+      const isOpen = panel.classList.toggle("open");
+      btn.classList.toggle("panel-open", isOpen);
+      panel.setAttribute("aria-hidden", String(!isOpen));
+    }
+
+    guideBtn.addEventListener("click", () => {
+      togglePanel(guideBtn, guidePanel, aboutBtn, aboutPanel);
+    });
+
     aboutBtn.addEventListener("click", () => {
-      const isOpen = aboutPanel.classList.toggle("open");
-      aboutBtn.classList.toggle("about-open", isOpen);
-      aboutPanel.setAttribute("aria-hidden", String(!isOpen));
+      togglePanel(aboutBtn, aboutPanel, guideBtn, guidePanel);
     });
 
     // Smooth cursor parallax for the mesh gradient orbs
