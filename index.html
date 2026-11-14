@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#010614" />
   <title>GestaltTroller</title>
-  <link rel="icon" type="image/png" href="icon.png?v=9" />
-  <link rel="apple-touch-icon" href="icon.png?v=9" />
+  <link rel="icon" type="image/png" href="icon.png?v=10" />
+  <link rel="apple-touch-icon" href="icon.png?v=10" />
   <style>
     * {
       margin: 0;
@@ -42,9 +42,13 @@
       overflow-x: hidden;
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
+      justify-content: flex-start; /* HIER WAR DER FEHLER: Startet jetzt sauber oben statt mitten im Bildschirm zu schweben */
+      padding-top: max(32px, 6vh);
+      padding-bottom: 40px;
+      padding-left: 16px;
+      padding-right: 16px;
     }
 
     /* Intensiver, mehrfarbiger Blau-Mesh-Hintergrund */
@@ -269,7 +273,7 @@
   <!-- Top-Right Dynamic Dock -->
   <header class="floating-dock" id="floatingDock" title="Back to top">
     <div class="dock-squircle">
-      <img id="dockIconImg" src="icon.png?v=9" alt="Icon" />
+      <img id="dockIconImg" src="icon.png?v=10" alt="Icon" />
     </div>
     <div class="dock-title">Gestalt<span>Troller</span></div>
   </header>
@@ -279,7 +283,7 @@
     <!-- Hero Brand -->
     <div class="hero-brand" id="heroBrand">
       <div class="ios-icon-wrapper" id="appIcon" title="GestaltTroller">
-        <img id="heroIconImg" src="icon.png?v=9" alt="Logo" />
+        <img id="heroIconImg" src="icon.png?v=10" alt="Logo" />
       </div>
       <h1 class="title">
         <span class="title-gestalt">Gestalt</span><span class="title-troller">Troller</span>
@@ -446,7 +450,7 @@
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         btn.style.setProperty("--mouse-x", `${x}px`);
-        btn.style.setProperty("--mouse-y`, `${y}px`);
+        btn.style.setProperty("--mouse-y", `${y}px`);
       });
     });
 
